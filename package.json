@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://script.google.com/macros/s/AKfycbyGb4sWQcDHI60y1aVcvRdglKsdUqh2vsIpNwX-CDU-tGUyGQam/exec",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
