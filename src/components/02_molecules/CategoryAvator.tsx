@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
-import CategoryIcon from './CategoryIcon'
-import theme from 'theme'
+import CategoryIcon from 'components/01_atoms/CategoryIcon'
+import { theme } from 'constants/globalUITheme'
 
 const WomenWrapper = styled(Avatar)`
   background-color: ${theme.palette.secondary.main};

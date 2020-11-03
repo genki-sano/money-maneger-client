@@ -1,9 +1,9 @@
-interface Total {
+export interface Total {
   women: number
   men: number
 }
 
-export interface PaymentListItem {
+export interface Payment {
   id: string
   name: string
   date: string
@@ -12,12 +12,12 @@ export interface PaymentListItem {
   memo: string
 }
 
-export interface PaymentList {
-  items: [string, PaymentListItem[]][]
+interface PaymentResponse {
+  items: [string, Payment[]][]
   total: Total
 }
 
-export const getPaymentList = async (date: string): Promise<PaymentList> => {
+export const fetchPayments = async (date: string): Promise<PaymentResponse> => {
   const params = {
     uri: '/api/list',
     date: date,

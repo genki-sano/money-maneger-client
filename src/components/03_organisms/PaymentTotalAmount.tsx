@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import { Total } from 'api/payment'
+import { theme } from 'constants/globalUITheme'
 import { numberWithDelimiter } from 'utils'
-import theme from 'theme'
 
 const Wrapper = styled(Grid)`
   padding: ${theme.spacing(3, 1)};
@@ -18,23 +19,31 @@ const PriceText = styled(Typography)`
   margin-right: ${`${theme.spacing(1)}px`};
 `
 
+const womenName = process.env.REACT_APP_WOMEN_NAME || '花子'
+const menName = process.env.REACT_APP_MEN_NAME || '太郎'
+
 interface Props {
   loading: boolean
-  women: number
-  men: number
+  total: Total
 }
 
-const TotalAmountTemplate: React.FC<Props> = ({ loading, women, men }) => {
+const TotalAmountTemplate: React.FC<Props> = ({ loading, total }) => {
   return (
     <>
       <Wrapper container>
         <Grid item xs={6}>
-          <Typography>{process.env.REACT_APP_WOMEN_NAME}</Typography>
-          <PriceText>{!loading ? numberWithDelimiter(women) : '-'}</PriceText>円
+          <Typography>{womenName}</Typography>
+          <PriceText>
+            {loading ? '-' : numberWithDelimiter(total.women)}
+          </PriceText>
+          円
         </Grid>
         <Grid item xs={6}>
-          <Typography>{process.env.REACT_APP_MEN_NAME}</Typography>
-          <PriceText>{!loading ? numberWithDelimiter(men) : '-'}</PriceText>円
+          <Typography>{menName}</Typography>
+          <PriceText>
+            {loading ? '-' : numberWithDelimiter(total.men)}
+          </PriceText>
+          円
         </Grid>
       </Wrapper>
     </>

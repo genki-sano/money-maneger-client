@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import PaymentPage from './components/PaymentPage'
+import PaymentPage from 'components/05_pages/PaymentPage'
 
 const Router: React.FC = () => {
   return (

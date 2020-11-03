@@ -6,8 +6,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
-import { PaymentListItem } from '../api/listApi'
-import CategoryAvator from './CategoryAvator'
+import { Payment } from 'api/payment'
+import CategoryAvator from 'components/02_molecules/CategoryAvator'
 import { numberWithDelimiter } from 'utils'
 
 const Wrapper = styled(List)`
@@ -16,24 +16,25 @@ const Wrapper = styled(List)`
 
 interface Props {
   date: string
-  payments: PaymentListItem[]
+  payments: Payment[]
 }
 
-const PaymentListItems: React.FC<Props> = ({ date, payments }) => {
+const PaymentList: React.FC<Props> = ({ date, payments }) => {
   return (
     <Wrapper subheader={<ListSubheader>{date}</ListSubheader>}>
-      {payments.map((item: PaymentListItem) => {
+      {payments.map((payment: Payment) => {
         return (
-          <ListItem key={item.id}>
+          <ListItem key={payment.id}>
             <ListItemAvatar>
-              <CategoryAvator name={item.name} category={item.category} />
+              <CategoryAvator name={payment.name} category={payment.category} />
             </ListItemAvatar>
-            <ListItemText
-              primary={item.category}
-              secondary={item.memo || 'その他'}
-            />
+            <ListItemText secondary={payment.memo || 'その他'}>
+              {payment.category}
+            </ListItemText>
             <ListItemSecondaryAction>
-              <ListItemText primary={`${numberWithDelimiter(item.price)} 円`} />
+              <ListItemText>
+                {`${numberWithDelimiter(payment.price)} 円`}
+              </ListItemText>
             </ListItemSecondaryAction>
           </ListItem>
         )
@@ -42,4 +43,4 @@ const PaymentListItems: React.FC<Props> = ({ date, payments }) => {
   )
 }
 
-export default PaymentListItems
+export default PaymentList
