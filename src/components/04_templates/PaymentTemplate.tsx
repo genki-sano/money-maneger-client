@@ -6,7 +6,6 @@ import PaymentHeader from 'components/03_organisms/PaymentHeader'
 import PaymentListGroups from 'components/03_organisms/PaymentListGroups'
 import PaymentTotalAmount from 'components/03_organisms/PaymentTotalAmount'
 import { theme } from 'constants/globalUITheme'
-import { PaymentErrorResponse } from 'slices/payment'
 
 const Wrapper = styled(Container)`
   min-height: 100vh;
@@ -19,7 +18,7 @@ const ListWrapper = styled(Container)`
 
 interface Props {
   loading: boolean
-  error: PaymentErrorResponse | null
+  error: string | null
   total: Total
   items: [string, Payment[]][]
   date: string

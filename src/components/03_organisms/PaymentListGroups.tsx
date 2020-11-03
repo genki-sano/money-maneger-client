@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import List from '@material-ui/core/List'
 import { Payment } from 'api/payment'
+import ErrorPage from 'components/03_organisms/ErrorPage'
 import LoadingPage from 'components/03_organisms/LoadingPage'
 import PaymentList from 'components/03_organisms/PaymentList'
-import { PaymentErrorResponse } from 'slices/payment'
 
 const Wrapper = styled(List)`
   background-color: inherit;
@@ -15,7 +15,7 @@ const ListSection = styled.li`
 
 interface Props {
   loading: boolean
-  error: PaymentErrorResponse | null
+  error: string | null
   items: [string, Payment[]][]
 }
 
@@ -23,8 +23,8 @@ const PaymentListGroups: React.FC<Props> = ({ loading, error, items }) => {
   if (loading) {
     return <LoadingPage />
   }
-  if (error) {
-    return <p>{error}</p>
+  if (error != null) {
+    return <ErrorPage massage={error} />
   }
 
   return (

@@ -2,13 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState, AppDispatch } from 'stores'
 import { fetchPayments, Payment, Total } from 'api/payment'
 
-export interface PaymentErrorResponse {
-  message: string
-}
-
 interface PaymentState {
   loading: boolean
-  error: PaymentErrorResponse | null
+  error: string | null
   items: [string, Payment[]][]
   total: Total
 }
@@ -39,7 +35,10 @@ export const paymentSlice = createSlice({
       state.loading = false
       state.error = null
       state.items = action.payload.items
-      state.total = action.payload.total
+      state.total = {
+        women: action.payload.total.women || 0,
+        men: action.payload.total.men || 0,
+      }
     },
   },
 })
