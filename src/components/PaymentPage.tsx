@@ -12,17 +12,17 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import PaymentTemplate from './PaymentTemplate'
 import { selectList, fetchItems } from '../slices/listSlice'
 import TotalAmountTemplate from './TotalAmountTemplate'
+import theme from 'theme'
 
 const Wrapper = styled(Container)`
+  min-height: 100vh;
   padding: 0;
-  background-color: #fff;
+  background-color: ${theme.palette.background.paper};
 `
-
 const TitleText = styled(Typography)`
   flex-grow: 1;
   text-align: center;
 `
-
 const ListWrapper = styled(Container)`
   background-color: inherit;
 `

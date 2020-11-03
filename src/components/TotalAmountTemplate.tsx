@@ -11,7 +11,6 @@ const Wrapper = styled(Grid)`
   color: ${theme.palette.primary.contrastText};
   background-color: ${theme.palette.primary.main};
 `
-
 const PriceText = styled(Typography)`
   display: inline-block;
   font-size: 1.8rem;

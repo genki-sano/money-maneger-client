@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   text-align: center;
   display: table;
 `
-
 const Inner = styled.div`
   display: table-cell;
   vertical-align: middle;
