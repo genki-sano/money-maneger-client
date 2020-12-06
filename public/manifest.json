@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "まるの中身",
+  "name": "まるに登録した値を一覧で表示します",
   "icons": [
     {
       "src": "favicon.ico",
