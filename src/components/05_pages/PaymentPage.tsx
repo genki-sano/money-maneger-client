@@ -4,7 +4,8 @@ import moment from 'moment'
 import PaymentTemplate from 'components/04_templates/PaymentTemplate'
 import { selectPayments, fetchItems } from 'slices/payment'
 
-const initialDate = moment().format('YYYY/MM/DD')
+const sessionDate = sessionStorage.getItem('money-maneger/date')
+const initialDate = sessionDate || moment().format('YYYY/MM/DD')
 
 const PaymentPage: React.FC = () => {
   const [date, setDate] = useState<string>(initialDate)
@@ -14,6 +15,7 @@ const PaymentPage: React.FC = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchItems(date))
+    sessionStorage.setItem('money-maneger/date', date)
   }, [dispatch, date])
 
   return (

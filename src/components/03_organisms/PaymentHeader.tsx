@@ -21,8 +21,8 @@ const PaymentHeader: React.FC<Props> = ({ date, setDate }) => {
   const startDate = moment(date).startOf('month').format('YYYY/MM/DD')
   const endDate = moment(date).endOf('month').format('YYYY/MM/DD')
 
-  const lastMonth = moment(date).subtract('month', 1).format('YYYY/MM/DD')
-  const nextMonth = moment(date).add('month', 1).format('YYYY/MM/DD')
+  const lastMonth = moment(date).subtract('month', 1).format('YYYY/MM/01')
+  const nextMonth = moment(date).add('month', 1).format('YYYY/MM/01')
 
   return (
     <AppBar position="static">

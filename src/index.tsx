@@ -8,8 +8,8 @@ import {
 } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Page from 'components/05_pages/PaymentPage'
-import { theme } from 'constants/globalUITheme'
 import { store } from 'stores/configureStore'
+import { theme } from 'constants/globalUITheme'
 
 ReactDOM.render(
   <React.StrictMode>
