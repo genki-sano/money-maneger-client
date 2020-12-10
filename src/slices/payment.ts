@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { fetchPayments, Payment, Total, PaymentResponse } from 'api/payment'
 import { RootState, AppDispatch } from 'stores'
-import { fetchPayments, Payment, Total } from 'api/payment'
 
 interface PaymentState {
   loading: boolean
@@ -23,15 +23,15 @@ export const paymentSlice = createSlice({
   name: 'payment',
   initialState: initialState,
   reducers: {
-    fetchStart(state) {
+    fetchStart(state: PaymentState) {
       state.loading = true
       state.error = null
     },
-    fetchFailure(state, action) {
+    fetchFailure(state: PaymentState, action: PayloadAction<string>) {
       state.loading = false
       state.error = action.payload
     },
-    fetchSuccess(state, action) {
+    fetchSuccess(state: PaymentState, action: PayloadAction<PaymentResponse>) {
       state.loading = false
       state.error = null
       state.items = action.payload.items

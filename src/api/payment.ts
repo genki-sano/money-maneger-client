@@ -1,11 +1,6 @@
 import moment from 'moment'
 import { groupBy } from 'utils'
 
-export interface Total {
-  women: number
-  men: number
-}
-
 export interface Payment {
   id: string
   name: string
@@ -15,7 +10,12 @@ export interface Payment {
   memo: string
 }
 
-interface PaymentResponse {
+export interface Total {
+  women: number
+  men: number
+}
+
+export interface PaymentResponse {
   items: [string, Payment[]][]
   total: Total
 }
