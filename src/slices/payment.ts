@@ -50,7 +50,7 @@ export const fetchItems = (date: string) => async (dispatch: AppDispatch) => {
     dispatch(fetchStart())
     dispatch(fetchSuccess(await fetchPayments(date)))
   } catch (e) {
-    dispatch(fetchFailure(e.stack))
+    dispatch(fetchFailure(`Error: ${e.message}`))
   }
 }
 

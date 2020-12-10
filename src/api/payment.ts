@@ -28,7 +28,7 @@ export const fetchPayments = async (date: string): Promise<PaymentResponse> => {
   const queryParams = new URLSearchParams(params)
   const res = await fetch(`${uri}?${queryParams}`)
   const json = await res.json()
-  if (!res.ok) {
+  if (!res.ok || json.message) {
     throw new Error(json.message)
   }
   return {
