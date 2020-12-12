@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import moment from 'moment'
 import { fetchPayments, Payment, Total, PaymentResponse } from 'api/payment'
 import { RootState, AppDispatch } from 'stores'
+import { groupBy } from 'utils'
 
 interface PaymentState {
   loading: boolean
@@ -34,7 +36,9 @@ export const paymentSlice = createSlice({
     fetchSuccess(state: PaymentState, action: PayloadAction<PaymentResponse>) {
       state.loading = false
       state.error = null
-      state.items = action.payload.items
+      state.items = groupBy(action.payload.items, (cur: Payment) =>
+        moment(cur.date).format('YYYY/MM/DD'),
+      )
       state.total = {
         women: action.payload.total.women || 0,
         men: action.payload.total.men || 0,
@@ -48,9 +52,12 @@ const { fetchStart, fetchFailure, fetchSuccess } = paymentSlice.actions
 export const fetchItems = (date: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(fetchStart())
-    dispatch(fetchSuccess(await fetchPayments(date)))
+    const res = await fetchPayments(date)
+    dispatch(fetchSuccess(res.data))
   } catch (e) {
-    dispatch(fetchFailure(`Error: ${e.message}`))
+    const res = e.response
+    const msg = `Error: ${res.data.message} ${res.status} (${res.statusText})`
+    dispatch(fetchFailure(msg))
   }
 }
 

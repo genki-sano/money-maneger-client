@@ -1,5 +1,6 @@
+import { AxiosPromise } from 'axios'
 import moment from 'moment'
-import { groupBy } from 'utils'
+import axios from 'api/axios'
 
 export interface Payment {
   id: string
@@ -16,25 +17,11 @@ export interface Total {
 }
 
 export interface PaymentResponse {
-  items: [string, Payment[]][]
+  items: Payment[]
   total: Total
 }
 
-export const fetchPayments = async (date: string): Promise<PaymentResponse> => {
-  const params = {
-    date: date,
-  }
-  const uri = process.env.REACT_APP_URI || 'http://localhost::8080'
-  const queryParams = new URLSearchParams(params)
-  const res = await fetch(`${uri}?${queryParams}`)
-  const json = await res.json()
-  if (!res.ok || json.message) {
-    throw new Error(json.message)
-  }
-  return {
-    items: groupBy(json.items, (cur: Payment) =>
-      moment(cur.date).format('YYYY/MM/DD'),
-    ),
-    total: json.total,
-  }
+export const fetchPayments = (date: string): AxiosPromise<PaymentResponse> => {
+  const formatDate = moment(date).format('YYYYMMDD')
+  return axios.get(`/api/payments/${formatDate}`)
 }
