@@ -1,3 +1,7 @@
+import {
+  useSelector as rawUseSelector,
+  TypedUseSelectorHook,
+} from 'react-redux'
 import { ThunkAction, Action } from '@reduxjs/toolkit'
 import { store } from 'stores/configureStore'
 
@@ -9,3 +13,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >
+
+export const useSelector: TypedUseSelectorHook<RootState> = rawUseSelector

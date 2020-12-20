@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import PaymentTemplate from 'components/04_templates/PaymentTemplate'
 import { selectPayments, fetchItems } from 'slices/payment'
-
-const sessionDate = sessionStorage.getItem('money-maneger/date')
-const initialDate = sessionDate || moment().format('YYYY/MM/DD')
+import { useSelector } from 'stores'
 
 const PaymentPage: React.FC = () => {
+  const sessionDate = sessionStorage.getItem('money-maneger/date')
+  const initialDate = sessionDate || moment().format('YYYY/MM/DD')
   const [date, setDate] = useState<string>(initialDate)
 
   const { loading, error, items, total } = useSelector(selectPayments)
