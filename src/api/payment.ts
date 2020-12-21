@@ -21,7 +21,7 @@ export interface PaymentResponse {
   total: Total
 }
 
-export const fetchPayments = (date: string): AxiosPromise<PaymentResponse> => {
+export const getByDate = (date: string): AxiosPromise<PaymentResponse> => {
   const formatDate = moment(date).format('YYYYMMDD')
   return axios.get(`/api/payments/${formatDate}`)
 }
